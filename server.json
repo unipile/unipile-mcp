@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.unipile/unipile-mcp",
+  "title": "Unipile MCP",
+  "description": "Read and call the whole Unipile API (LinkedIn, WhatsApp, Instagram, Telegram, Email, Calendar) from your coding agent.",
+  "websiteUrl": "https://developer.unipile.com/docs/mcp",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://developer.unipile.com/mcp?branch=v2.0"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/unipile/unipile-mcp",
+    "source": "github"
+  }
+}
