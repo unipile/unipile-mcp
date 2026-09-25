@@ -2,13 +2,55 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.unipile/unipile-mcp",
   "title": "Unipile MCP",
-  "description": "Read and call the whole Unipile API (LinkedIn, WhatsApp, Instagram, Telegram, Email, Calendar) from your coding agent.",
+  "description": "LinkedIn, Sales Navigator, Recruiter, WhatsApp, Instagram, Telegram and email MCP for coding agents.",
   "websiteUrl": "https://developer.unipile.com/docs/mcp",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/unipile/unipile-mcp/main/assets/icon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://raw.githubusercontent.com/unipile/unipile-mcp/main/assets/icon-256.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "256x256"
+      ]
+    },
+    {
+      "src": "https://raw.githubusercontent.com/unipile/unipile-mcp/main/assets/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
   "version": "1.0.0",
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://developer.unipile.com/mcp?branch=v2.0"
+      "url": "https://developer.unipile.com/mcp?branch={branch}",
+      "variables": {
+        "branch": {
+          "description": "Unipile API version. v2.0 for the v2 API (key only); v1.0 for v1 (access token + DSN).",
+          "default": "v2.0",
+          "choices": [
+            "v2.0",
+            "v1.0"
+          ],
+          "isRequired": true
+        }
+      },
+      "headers": [
+        {
+          "name": "X-API-KEY",
+          "description": "Unipile API key. v2: scoped Account API key from dashboardv2.unipile.com. v1: access token.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
     }
   ],
   "repository": {
