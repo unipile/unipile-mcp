@@ -342,7 +342,7 @@ v2, unless your accounts are in the v1 environment. See [API version](#api-versi
 
 ## Notes
 
-- Only repositories under `github.com/unipile/*` are official. Other GitHub repositories built on the Unipile API are third-party projects that Unipile does not maintain. The unscoped `n8n-nodes-unipile` package on npm is one of them; the official node is `@unipile/n8n-nodes-unipile`.
+- Only repositories under `github.com/unipile/*` are official. Other GitHub repositories built on the Unipile API are third-party projects that Unipile does not maintain.
 - This repository is the distribution kit for the hosted server: registry manifest, directory listing copy and setup notes. It does not run a second server. The URL at the top, documented at [developer.unipile.com/docs/mcp](https://developer.unipile.com/docs/mcp), is the only one.
 
 ## Registry manifest
