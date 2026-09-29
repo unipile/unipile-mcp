@@ -241,6 +241,8 @@ Every client below speaks Streamable HTTP and takes the key in an `X-API-KEY` he
   }
 }
 ```
+
+Installed as a plugin from the Cursor Marketplace, the server reads the key from the `UNIPILE_API_KEY` environment variable instead.
 </details>
 
 <details>
