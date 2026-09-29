@@ -270,6 +270,13 @@ Installed as a plugin from the Cursor Marketplace, the server reads the key from
 ```bash
 claude mcp add --transport http unipile "https://developer.unipile.com/mcp?branch=v2.0" --header "X-API-KEY: your-scoped-api-key"
 ```
+
+Or install it as a plugin, with the key in the `UNIPILE_API_KEY` environment variable:
+
+```
+/plugin marketplace add unipile/unipile-mcp
+/plugin install unipile@unipile
+```
 </details>
 
 <details>
