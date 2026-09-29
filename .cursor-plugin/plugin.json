@@ -1,0 +1,26 @@
+{
+  "name": "unipile",
+  "displayName": "Unipile",
+  "version": "1.0.0",
+  "description": "Build LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, email and calendar features with the Unipile API from Cursor's agent: it reads the exact API contract and tests each call on your own connected accounts.",
+  "author": {
+    "name": "Unipile SAS",
+    "url": "https://www.unipile.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "unipile",
+    "linkedin",
+    "sales-navigator",
+    "recruiter",
+    "whatsapp",
+    "instagram",
+    "telegram",
+    "email",
+    "calendar",
+    "api"
+  ],
+  "logo": "assets/icon.png",
+  "repository": "https://github.com/unipile/unipile-mcp"
+}
