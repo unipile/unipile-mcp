@@ -39,3 +39,14 @@ If the user's integration still runs on the v1 API, use `branch=v1.0` in the URL
 ## 3. Check it works
 
 List the tools. The server exposes five: `list-endpoints`, `get-endpoint`, `search-endpoints`, `list-specs` and `execute-request`. Then call `search-endpoints` with a query such as `send linkedin invitation` to confirm the connection.
+
+## Official Gemini CLI and Grok Build clients
+
+- Gemini CLI: `gemini extensions install https://github.com/unipile/unipile-mcp`.
+  Enter a scoped Account API key at the sensitive setting prompt, or leave it empty
+  for documentation only. Restart and check `/mcp`. An existing `unipile` entry in
+  `settings.json` overrides the extension.
+- Grok Build: merge `connectors/grok.toml` into `~/.grok/config.toml`, set
+  `UNIPILE_API_KEY` in the environment, and run `grok mcp doctor unipile`.
+
+See [Setup](./README.md#setup) for official references and transport details.

@@ -4,7 +4,7 @@
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=unipile&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22unipile_api_key%22%2C%22description%22%3A%22Unipile%20scoped%20Account%20API%20key%22%2C%22password%22%3Atrue%7D%5D&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fdeveloper.unipile.com%2Fmcp%3Fbranch%3Dv2.0%22%2C%22headers%22%3A%7B%22X-API-KEY%22%3A%22%24%7Binput%3Aunipile_api_key%7D%22%7D%7D)
 [![Unipile MCP connector](https://glama.ai/mcp/connectors/com.unipile.developer/unipile/badges/score.svg)](https://glama.ai/mcp/connectors/com.unipile.developer/unipile)
 
-The Unipile MCP server gives your coding agent a **LinkedIn MCP server** (Classic, **Sales Navigator** and **Recruiter**), a **WhatsApp MCP**, an **Instagram MCP**, a **Telegram MCP**, an **email MCP** for Gmail, Outlook and IMAP, and a **calendar MCP** for Google and Outlook, all in one hosted server. Plug it into Cursor, Claude Code, Codex, Gemini CLI, VS Code or Windsurf. Your agent then reads the exact Unipile API contract, writes your product's LinkedIn, WhatsApp or email integration in your stack, and tests each call on your own connected accounts before you commit.
+The Unipile MCP server gives your coding agent a **LinkedIn MCP server** (Classic, **Sales Navigator** and **Recruiter**), a **WhatsApp MCP**, an **Instagram MCP**, a **Telegram MCP**, an **email MCP** for Gmail, Outlook and IMAP, and a **calendar MCP** for Google and Outlook, all in one hosted server. Plug it into Cursor, Claude Code, Codex, Gemini CLI, Grok Build, VS Code or Windsurf. Your agent then reads the exact Unipile API contract, writes your product's LinkedIn, WhatsApp or email integration in your stack, and tests each call on your own connected accounts before you commit.
 
 ```
 https://developer.unipile.com/mcp?branch=v2.0
@@ -290,6 +290,49 @@ http_headers = { "X-API-KEY" = "your-scoped-api-key" }
 </details>
 
 <details>
+<summary>Gemini CLI: install the Unipile extension</summary>
+
+```bash
+gemini extensions install https://github.com/unipile/unipile-mcp
+```
+
+The root [`gemini-extension.json`](./gemini-extension.json) uses Gemini's native
+Streamable HTTP transport. Installation prompts for a **scoped Account API key**
+as a sensitive setting; leave it empty to read the API reference only. Restart
+Gemini CLI, then run `/mcp` to check the connection. To change the key later, run
+`gemini extensions config unipile`.
+
+An existing `unipile` server in `settings.json` takes precedence over the extension.
+Use the manual configuration below if you need the v1 endpoint.
+See the [official extension reference](https://geminicli.com/docs/extensions/reference/).
+</details>
+
+<details>
+<summary>Grok Build: native MCP configuration</summary>
+
+Merge [`connectors/grok.toml`](./connectors/grok.toml) into `~/.grok/config.toml`
+and set `UNIPILE_API_KEY` in your environment to a scoped Account API key. The
+configuration expands the variable at load time, so the key stays out of Git.
+Without a key, only API reference tools are available.
+
+Alternatively, register the server with the official CLI (single quotes keep
+variable expansion in Grok rather than storing the key through shell expansion):
+
+```bash
+grok mcp add --transport http unipile 'https://developer.unipile.com/mcp?branch=v2.0' --header 'X-API-KEY: ${UNIPILE_API_KEY:-}'
+grok mcp doctor unipile
+```
+
+This targets **Grok Build**, using its [official MCP interface](https://docs.x.ai/build/features/mcp-servers).
+It does not register an app in a Grok consumer connector catalog. For API-based
+agents, xAI also supports [remote MCP tools](https://docs.x.ai/developers/tools/remote-mcp):
+use this same `server_url`, `server_label: "unipile"` and a `headers` object
+containing `X-API-KEY`. Restrict `allowed_tools` to the four API reference tools
+unless your application explicitly authorizes `execute-request`; xAI's Responses
+API does not currently support `require_approval` for remote MCP tools.
+</details>
+
+<details>
 <summary>Gemini CLI: <code>~/.gemini/settings.json</code></summary>
 
 ```json
@@ -358,3 +401,24 @@ v2, unless your accounts are in the v1 environment. See [API version](#api-versi
 ## Registry manifest
 
 [`server.json`](./server.json) is the [MCP registry](https://github.com/modelcontextprotocol/registry) manifest for this server. It is used for the official registry submission and by directories that ingest it (Glama, PulseMCP, mcp.so...). It declares `branch` as a URL variable (`v2.0` by default, `v1.0` optional) and `X-API-KEY` as a required secret header.
+
+## Connector validation
+
+Run the dependency-free distribution checks (Python 3.11+):
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 tests/smoke_mcp.py  # also requires curl
+```
+
+The first command checks manifest field types, transport, secret references and
+existing v2 configurations. There is no TypeScript server or typecheck target in
+this distribution repository. The second command initializes the hosted MCP and
+lists its tools without credentials; it never calls `execute-request`. Client
+login, paid model calls and scoped-account execution require your own credentials
+and are not covered by these checks.
+
+[`tests/connectors-workflow.example.yml`](./tests/connectors-workflow.example.yml)
+provides a GitHub Actions job for maintainers who want to enable these checks.
+It is an example rather than an active workflow because the publishing OAuth
+credential does not have GitHub's `workflow` scope.
