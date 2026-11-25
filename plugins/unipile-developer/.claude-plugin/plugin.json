@@ -1,0 +1,45 @@
+{
+  "name": "unipile-developer",
+  "displayName": "Unipile Developer",
+  "version": "1.1.0",
+  "description": "Unipile's Developer MCP in Claude: build with the LinkedIn API (Classic, Sales Navigator, Recruiter) and the WhatsApp, Instagram, Facebook, Telegram, email and calendar APIs. Claude reads the exact schema of each route and tests calls on your test accounts.",
+  "author": {
+    "name": "Unipile SAS",
+    "url": "https://www.unipile.com"
+  },
+  "homepage": "https://developer.unipile.com/v2.0/docs/developer-mcp",
+  "repository": "https://github.com/unipile/unipile-mcp",
+  "license": "MIT",
+  "keywords": [
+    "linkedin-api",
+    "sales-navigator",
+    "linkedin-recruiter",
+    "whatsapp-api",
+    "instagram",
+    "facebook",
+    "telegram",
+    "email-api",
+    "gmail",
+    "outlook",
+    "calendar-api",
+    "unified-messaging",
+    "api-reference",
+    "developer-tools",
+    "unipile"
+  ],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://developer.unipile.com/v2.0/docs/developer-mcp",
+  "supportUrl": "https://www.unipile.com/contact-us/",
+  "privacyPolicyUrl": "https://www.unipile.com/privacy-policy/",
+  "termsOfServiceUrl": "https://www.unipile.com/terms-of-use/",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Unipile scoped API key (optional)",
+      "description": "Scoped Account API key from dashboardv2.unipile.com. Leave empty to only read the API reference. Needed to run requests on the test accounts assigned to the key's Scope.",
+      "sensitive": true,
+      "required": false
+    }
+  },
+  "mcpServers": "./.mcp.json"
+}

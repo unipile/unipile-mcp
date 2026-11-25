@@ -1,25 +1,28 @@
-# Unipile: the LinkedIn API, WhatsApp, email and calendar APIs inside Claude
+# Unipile Developer MCP: the LinkedIn API, WhatsApp, Facebook, email and calendar APIs inside Claude
 
-Unipile is the API that SaaS teams use to add LinkedIn (Classic, Sales Navigator and Recruiter), WhatsApp, Instagram, Telegram, email (Gmail, Outlook, IMAP) and calendar (Google, Outlook) features to their own product. Their users connect their own accounts, and the product acts on those accounts through one REST API.
+Unipile is the API that SaaS teams use to add LinkedIn (Classic, Sales Navigator and Recruiter), WhatsApp, Instagram, Facebook, Telegram, email (Gmail, Outlook, IMAP) and calendar (Google, Outlook) features to their own product. Their users connect their own accounts, and the product acts on those accounts through one REST API.
 
-This plugin connects Claude to the official Unipile MCP server. While you build, Claude searches the Unipile API reference by intent, reads the exact parameters and response schema of the route it needs, writes the integration in your stack, and tests the call on your own connected test accounts. It works from the live API reference, not from memory, so it doesn't invent endpoints or fields.
+This plugin connects Claude to the Unipile **Developer MCP**, the official MCP server for building with the API. While you build, Claude searches the Unipile API reference by intent, reads the exact parameters and response schema of the route it needs, writes the integration in your stack, and tests the call on your own connected test accounts. It works from the live API reference, not from memory, so it doesn't invent endpoints or fields.
+
+To let Claude work with your own accounts day to day rather than build a product, use the [Unipile User MCP](https://developer.unipile.com/v2.0/docs/user-mcp) instead.
 
 ## What you can build with it
 
-- **LinkedIn API:** people, company, post and job search, profile enrichment, invitations, messages and InMail, company pages, job postings and applicants.
+- **LinkedIn API:** people, company, post and job search, profile enrichment, invitations, messages and InMail, company pages, groups, events, job postings and applicants.
 - **Sales Navigator API:** lead and account search with Sales Navigator filters, lead and account lists, Sales Navigator InMail.
 - **LinkedIn Recruiter API:** candidate search, hiring projects, pipelines, applicants and Recruiter InMail.
-- **Unified messaging:** WhatsApp, Instagram, Telegram and LinkedIn chats through one set of routes: chats, messages, attachments, reactions and groups.
-- **Email API:** Gmail, Outlook and IMAP with one schema: search, threads, send and reply, drafts, folders and attachments.
+- **Facebook:** Messenger conversations, including encrypted chats, Pages, posts, comments and reactions, groups, events and search.
+- **Unified messaging:** WhatsApp, Instagram, Facebook Messenger, Telegram and LinkedIn chats through one set of routes: chats, messages, attachments, reactions, groups and blocked users.
+- **Email API:** Gmail, Outlook and IMAP with one schema: search, threads, send and reply, drafts, folders, attachments and Outlook categories.
 - **Calendar API:** Google and Outlook calendars, events and RSVPs.
-- **Production plumbing:** the hosted "Connect your account" page, multi-tenant Scopes and keys, and webhooks for new messages and account events.
+- **Production plumbing:** the hosted "Connect your account" page, multi-tenant Scopes and keys, and webhooks for new messages, emails and account events.
 
 ## Try it
 
 - "Add a 'Connect LinkedIn' button to my app with Unipile hosted auth, then list the connected accounts."
 - "Write a function that sends a LinkedIn invitation with a note, and test it on my connected account."
 - "Build a Sales Navigator lead search with seniority and headcount filters."
-- "Build an inbox view that lists WhatsApp and LinkedIn chats together, newest first."
+- "Build an inbox view that lists WhatsApp, Messenger and LinkedIn chats together, newest first."
 - "Add Gmail and Outlook sending to our sequences, with replies threaded under the original email."
 
 ## Setup
@@ -27,15 +30,15 @@ This plugin connects Claude to the official Unipile MCP server. While you build,
 Install it from the Claude plugin directory, or in Claude Code:
 
 ```
-/plugin install unipile --marketplace unipile/unipile-mcp
+/plugin install unipile-developer --marketplace unipile/unipile-mcp
 ```
 
-The plugin asks for one optional value when you enable it: a **scoped Account API key**.
+The plugin asks for one optional value when you enable it: an **Account API key**.
 
 - **Without a key**, Claude can search and read the whole API reference. That is enough to design and write an integration.
-- **With a key**, Claude can also run requests on the test accounts assigned to that key's Scope and check the real responses.
+- **With a key**, Claude can also run requests on the accounts that key can reach and check the real responses.
 
-To create the key, open the [Unipile dashboard](https://dashboardv2.unipile.com/), connect a test account (LinkedIn, WhatsApp, Gmail...), create a [Scope](https://developer.unipile.com/v2.0/docs/scopes) for it, then create a [scoped key](https://developer.unipile.com/v2.0/docs/api-keys) for that Scope. Use a scoped key only: a global Account key reaches every account in your application, and a Service key manages the application itself. Claude Code stores the key in your system's secure credential store, not in a settings file.
+Use a scoped key. In the [Unipile dashboard](https://dashboardv2.unipile.com/), connect a test account (LinkedIn, WhatsApp, Gmail...), create a [Scope](https://developer.unipile.com/v2.0/docs/scopes) with only that account, then create a [scoped Account API key](https://developer.unipile.com/v2.0/docs/api-keys) for that Scope. The development key that the dashboard's **Connect my project** guide creates is global: it reaches every account in your application and expires after 90 days. Never use a Service key here. Claude Code stores the key in your system's secure credential store, not in a settings file.
 
 ## What the plugin contains and where data goes
 
@@ -64,7 +67,7 @@ claude mcp add --transport http unipile-v1 "https://developer.unipile.com/mcp?br
 
 ## Links
 
-- Documentation: [developer.unipile.com/docs/mcp](https://developer.unipile.com/docs/mcp)
+- Documentation: [Developer MCP](https://developer.unipile.com/v2.0/docs/developer-mcp)
 - API reference: [developer.unipile.com/v2.0/reference](https://developer.unipile.com/v2.0/reference)
 - Support: [unipile.com/contact-us](https://www.unipile.com/contact-us/) · Status: [status.unipile.com](https://status.unipile.com/)
 - [Privacy policy](https://www.unipile.com/privacy-policy/) · [Terms of use](https://www.unipile.com/terms-of-use/)

@@ -9,9 +9,9 @@
   },
   "plugins": [
     {
-      "name": "unipile",
-      "source": "./plugins/unipile",
-      "description": "The Unipile API (LinkedIn, Sales Navigator, Recruiter, WhatsApp, Instagram, Telegram, email, calendar) inside Claude Code: API reference, schemas and test calls."
+      "name": "unipile-developer",
+      "source": "./plugins/unipile-developer",
+      "description": "Unipile's Developer MCP in Claude Code: the LinkedIn, WhatsApp, Instagram, Facebook, Telegram, email and calendar API reference, schemas and test calls."
     }
   ]
 }
