@@ -10,8 +10,8 @@
   "plugins": [
     {
       "name": "unipile",
-      "source": "./",
-      "description": "The Unipile API (LinkedIn, Sales Navigator, Recruiter, WhatsApp, Instagram, Telegram, email, calendar) inside Claude Code."
+      "source": "./plugins/unipile",
+      "description": "The Unipile API (LinkedIn, Sales Navigator, Recruiter, WhatsApp, Instagram, Telegram, email, calendar) inside Claude Code: API reference, schemas and test calls."
     }
   ]
 }

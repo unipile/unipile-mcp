@@ -217,7 +217,7 @@ On `branch=v2.0` the server exposes five tools:
 | Tool | What it does |
 |---|---|
 | `search-endpoints` | Searches paths, operations and parameters, for example `sales-navigator`, `inmail` or `relation-requests` |
-| `list-specs` | Lists the available OpenAPI specs; the others take the spec `title` as a parameter (`Unipile API`) |
+| `list-specs` | Lists the available OpenAPI specs; the others take the spec `title` as a parameter (`Unipile API (reference)`) |
 | `list-endpoints` | Lists every path and method with its summary |
 | `get-endpoint` | Returns one operation's full request/response schema, security and servers |
 | `execute-request` | Runs the request for real (a HAR object) against your own accounts |
@@ -271,7 +271,7 @@ Installed as a plugin from the Cursor Marketplace, the server reads the key from
 claude mcp add --transport http unipile "https://developer.unipile.com/mcp?branch=v2.0" --header "X-API-KEY: your-scoped-api-key"
 ```
 
-Or install it as a plugin, with the key in the `UNIPILE_API_KEY` environment variable:
+Or install it as a plugin, which asks for the key when you enable it and keeps it in your system's credential store. The plugin also adds a skill that tells Claude how to use the server:
 
 ```
 /plugin marketplace add unipile/unipile-mcp
