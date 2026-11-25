@@ -4,7 +4,7 @@
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=unipile&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22unipile_api_key%22%2C%22description%22%3A%22Unipile%20scoped%20Account%20API%20key%22%2C%22password%22%3Atrue%7D%5D&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fdeveloper.unipile.com%2Fmcp%3Fbranch%3Dv2.0%22%2C%22headers%22%3A%7B%22X-API-KEY%22%3A%22%24%7Binput%3Aunipile_api_key%7D%22%7D%7D)
 [![Unipile MCP connector](https://glama.ai/mcp/connectors/com.unipile.developer/unipile/badges/score.svg)](https://glama.ai/mcp/connectors/com.unipile.developer/unipile)
 
-The Unipile MCP server gives your coding agent a **LinkedIn MCP server** (Classic, **Sales Navigator** and **Recruiter**), a **WhatsApp MCP**, an **Instagram MCP**, a **Telegram MCP**, an **email MCP** for Gmail, Outlook and IMAP, and a **calendar MCP** for Google and Outlook, all in one hosted server. Plug it into Cursor, Claude Code, Codex, Gemini CLI, VS Code or Windsurf. Your agent then reads the exact Unipile API contract, writes your product's LinkedIn, WhatsApp or email integration in your stack, and tests each call on your own connected accounts before you commit.
+The Unipile MCP server gives your coding agent a **LinkedIn MCP server** (Classic, **Sales Navigator** and **Recruiter**), a **WhatsApp MCP**, an **Instagram MCP**, a **Facebook Messenger MCP**, a **Telegram MCP**, an **email MCP** for Gmail, Outlook and IMAP, and a **calendar MCP** for Google and Outlook, all in one hosted server. Plug it into Cursor, Claude Code, Codex, Gemini CLI, VS Code or Windsurf. Your agent then reads the exact Unipile API contract, writes your product's LinkedIn, WhatsApp or email integration in your stack, and tests each call on your own connected accounts before you commit.
 
 ```
 https://developer.unipile.com/mcp?branch=v2.0
@@ -117,9 +117,9 @@ The account needs a Recruiter seat.
 | Applicants and their resumes | `POST .../projects/{project_id}/talent-pool/applicants` · `GET .../applicants/{applicant_profile_id}/resume` |
 | Create, publish and close Recruiter job postings; check job slot credits | `POST .../recruiter/jobs` · `POST .../projects/{project_id}/jobs/{job_id}/publish` · `GET .../recruiter/job-slots-credits` |
 
-### WhatsApp MCP, Instagram MCP, Telegram MCP: one messaging API with LinkedIn
+### WhatsApp MCP, Instagram MCP, Messenger MCP, Telegram MCP: one messaging API with LinkedIn
 
-One set of routes serves every messaging provider: WhatsApp chats and groups, Instagram DMs, Telegram chats and groups, and LinkedIn messages. A unified inbox is one integration, not four.
+One set of routes serves every messaging provider: WhatsApp chats and groups, Instagram DMs, Facebook Messenger chats, Telegram chats and groups, and LinkedIn messages. A unified inbox is one integration, not four.
 
 | Feature in your product | Route |
 |---|---|
@@ -190,7 +190,7 @@ v1 and v2 are **separate environments**. An account connected in one is not visi
 | Dashboard | [dashboardv2.unipile.com](https://dashboardv2.unipile.com/) | [dashboard.unipile.com](https://dashboard.unipile.com/) |
 | Credentials | An API key only | An access token **plus** your DSN (`https://apiX.unipile.com:XXXXX`) |
 | Base URL | `https://api.unipile.com` | Your DSN |
-| Routes | `/v2/...`, 179 operations | `/api/v1/...`, 94 operations |
+| Routes | `/v2/...`, 203 operations | `/api/v1/...`, 99 operations |
 | Accounts | Accounts connected in the v2 environment | Accounts connected in the v1 environment |
 | API reference | [developer.unipile.com/v2.0/reference](https://developer.unipile.com/v2.0/reference) | [developer.unipile.com/v1.0/reference](https://developer.unipile.com/v1.0/reference) |
 
@@ -208,7 +208,7 @@ v2 has three kinds of key. **Give an MCP client a scoped Account API key only:**
 | **Global Account API key** | Every account in the application | Do not use: it reaches all your users' accounts |
 | **Service API key** | Application management: Scopes, API keys, webhook endpoints | Do not use: keep it in your backend |
 
-The agent can still read the schemas of the management routes (`/v2/scopes`, `/v2/api-keys`, `/v2/webhooks`) and write the backend code that calls them with your Service key. Never commit a key to a shared repository.
+The agent can still read the schemas of the management routes (`/v2/scopes`, `/v2/api-keys`, `/v2/webhooks/endpoints`) and write the backend code that calls them with your Service key. Never commit a key to a shared repository.
 
 ## Tools
 
@@ -217,7 +217,7 @@ On `branch=v2.0` the server exposes five tools:
 | Tool | What it does |
 |---|---|
 | `search-endpoints` | Searches paths, operations and parameters, for example `sales-navigator`, `inmail` or `relation-requests` |
-| `list-specs` | Lists the available OpenAPI specs; the others take the spec `title` as a parameter (`Unipile API`) |
+| `list-specs` | Lists the available OpenAPI specs; the others take the spec `title` as a parameter (`Unipile API (reference)`) |
 | `list-endpoints` | Lists every path and method with its summary |
 | `get-endpoint` | Returns one operation's full request/response schema, security and servers |
 | `execute-request` | Runs the request for real (a HAR object) against your own accounts |
@@ -271,11 +271,11 @@ Installed as a plugin from the Cursor Marketplace, the server reads the key from
 claude mcp add --transport http unipile "https://developer.unipile.com/mcp?branch=v2.0" --header "X-API-KEY: your-scoped-api-key"
 ```
 
-Or install it as a plugin, with the key in the `UNIPILE_API_KEY` environment variable:
+Or install it as a plugin, which asks for the key when you enable it and keeps it in your system's credential store. The plugin also adds a skill that tells Claude how to use the server:
 
 ```
 /plugin marketplace add unipile/unipile-mcp
-/plugin install unipile@unipile
+/plugin install unipile-developer@unipile
 ```
 </details>
 
