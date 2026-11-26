@@ -6,8 +6,6 @@ This plugin gives Claude Code the Unipile API reference, through the read-only *
 
 The plugin is documentation only. It holds no API key and doesn't call the Unipile API or any account: you run the code Claude writes in your own environment, with your own keys.
 
-To let Claude work with your own accounts day to day rather than build a product, use the [Unipile User MCP](https://developer.unipile.com/v2.0/docs/user-mcp) instead.
-
 ## What the reference covers
 
 - **LinkedIn API:** search for people, companies, posts and jobs, profiles, relations, messaging and InMail, company pages, job postings and applicants.
@@ -55,11 +53,7 @@ The documentation server also lists an `execute-request` tool from its documenta
 
 ## API version
 
-The plugin uses the Unipile API v2 reference. For the v1 reference, add the server yourself:
-
-```bash
-claude mcp add --transport http unipile-v1-docs "https://developer.unipile.com/mcp?branch=v1.0"
-```
+The plugin uses the Unipile API v2 reference (`/v2/...` routes).
 
 ## Links
 
