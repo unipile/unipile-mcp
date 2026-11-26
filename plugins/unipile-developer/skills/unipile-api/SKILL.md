@@ -10,10 +10,9 @@ The `unipile` MCP server (Unipile's Developer MCP) exposes the live Unipile API 
 ## Workflow
 
 1. **Find the route.** Call `search-endpoints` with a short keyword, such as `relation-requests`, `sales-navigator`, `inmail`, `emails`, `calendars` or `webhooks`. Use `list-endpoints` to browse a whole area.
-2. **Pick the spec.** `get-endpoint` and `list-endpoints` take a spec `title`. Call `list-specs` once and use the title it returns. If it lists more than one v2 spec, use `Unipile API (reference)`, which is the complete one.
-3. **Read the contract.** Call `get-endpoint` with the path, method and title before writing a request body. Take the base URL, auth scheme, required fields and enum values from its answer.
-4. **Write the code** in the user's stack. If the project already uses the Unipile [Node.js](https://github.com/unipile/unipile-node-sdk) or [Python](https://github.com/unipile/unipile-python) SDK, use it. Read the API key from the project's configuration or environment, and never write a key into code or commit it.
-5. **Leave execution to the user.** This plugin is documentation only and holds no API key. Don't call `execute-request`: it can't reach any account from here. Tell the user how to run the code in their own environment with their own key (a scoped Account API key, read from configuration or environment), and what response to expect from the schema.
+2. **Read the contract.** Call `get-endpoint` with the exact path from step 1 (keep any trailing slash, for example `/v2/accounts/`) and the method before writing a request body. Take the base URL, auth scheme, required fields and enum values from its answer.
+3. **Write the code** in the user's stack. If the project already uses the Unipile [Node.js](https://github.com/unipile/unipile-node-sdk) or [Python](https://github.com/unipile/unipile-python) SDK, use it. Read the API key from the project's configuration or environment, and never write a key into code or commit it.
+4. **Leave execution to the user.** This plugin is documentation only and holds no API key. Don't call `execute-request`: it can't reach any account from here. Tell the user how to run the code in their own environment with their own key (a scoped Account API key, read from configuration or environment), and what response to expect from the schema.
 
 Never ask the user to paste a key into the chat.
 

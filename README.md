@@ -212,17 +212,16 @@ The agent can still read the schemas of the management routes (`/v2/scopes`, `/v
 
 ## Tools
 
-On `branch=v2.0` the server exposes five tools:
+On `branch=v2.0` the server exposes four tools:
 
 | Tool | What it does |
 |---|---|
 | `search-endpoints` | Searches paths, operations and parameters, for example `sales-navigator`, `inmail` or `relation-requests` |
-| `list-specs` | Lists the available OpenAPI specs; the others take the spec `title` as a parameter (`Unipile API (reference)`) |
 | `list-endpoints` | Lists every path and method with its summary |
 | `get-endpoint` | Returns one operation's full request/response schema, security and servers |
 | `execute-request` | Runs the request for real (a HAR object) against your own accounts |
 
-On `branch=v1.0`, `get-server-variables` replaces `list-specs` and the tools take no `title`.
+On `branch=v1.0`, the server adds `get-server-variables`, which returns your DSN.
 
 ## Setup
 

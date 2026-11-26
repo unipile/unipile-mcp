@@ -40,12 +40,11 @@ Nothing to configure: the plugin needs no account and no key.
 - **One remote MCP server**, `https://developer.unipile.com/mcp?branch=v2.0`, the Unipile API documentation server. Claude sends it search terms and route names, nothing from your project.
 - **One skill**, `unipile-api`, which tells Claude how to use it: find the route, read its schema, then write the code.
 
-Claude uses four read-only tools from that server:
+Claude uses three read-only tools from that server:
 
 | Tool | What it does |
 |---|---|
 | `search-endpoints` | Finds the routes that match a keyword, such as `sales-navigator`, `inmail` or `emails` |
-| `list-specs` | Lists the available API specifications |
 | `list-endpoints` | Lists every route with its summary |
 | `get-endpoint` | Returns one route's parameters, request body, response schema and auth |
 
