@@ -1,7 +1,7 @@
 {
   "name": "unipile-developer",
   "displayName": "Unipile Developer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Unipile's API reference in Claude: search the docs of the LinkedIn API (Classic, Sales Navigator, Recruiter) and the WhatsApp, Instagram, Facebook, Telegram, email and calendar APIs, read each route's exact schema, and write your integration code from it.",
   "author": {
     "name": "Unipile SAS",
