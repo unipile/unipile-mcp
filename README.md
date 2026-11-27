@@ -291,6 +291,14 @@ http_headers = { "X-API-KEY" = "your-scoped-api-key" }
 <details>
 <summary>Gemini CLI: <code>~/.gemini/settings.json</code></summary>
 
+Install it as a Gemini CLI extension (it asks for the optional scoped key):
+
+```bash
+gemini extensions install https://github.com/unipile/unipile-mcp
+```
+
+Or add it to `~/.gemini/settings.json` yourself:
+
 ```json
 {
   "mcpServers": {
